@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        const line = await fetch('3.txt').then(response => response.text());
+        const regex1 = /mul\((\d{1,3}),(\d{1,3})\)/g;
+        const matches = line.match(regex1);
+        let sum1 = 0;
+        matches.forEach(match => {
+            const numbers = match.match(/\d{1,3}/g);
+            const result = numbers[0] * numbers[1];
+            sum1 += result;
+        }); 
+
+        function reverse(s){
+            return s.split("").reverse().join("");
+        }
+
+        const regex2 = /mul\((\d{1,3}),(\d{1,3})\)/;
+        const regexDo = /\)\(od/;
+        const regexDont = /\)\(t'nod/;
+
+        let index = 0;
+        let sum2 = 0;
+        while (index < line.length) {
+            const match = regex2.exec(line.slice(index));
+            if (!match) {
+                break;
+            }
+            console.log(match);
+            
+
+            const beforeMatch = line.slice(0, index + match.index);
+            console.log(reverse(beforeMatch));
+            
+            const doMatch = regexDo.exec(reverse(beforeMatch)) ?? {index: Number.MAX_SAFE_INTEGER - 1};
+            const dontMatch = regexDont.exec(reverse(beforeMatch)) ?? {index: Number.MAX_SAFE_INTEGER};
+            console.log(doMatch, dontMatch);
+            
+            if (doMatch.index < dontMatch.index) {
+                const result = match[1] * match[2];
+                sum2 += result;
+            }
+            index += match.index + match[0].length;
+            
+        }
+        console.log(sum2);
+        
+    </script>
+</body>
+</html>
