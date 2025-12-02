@@ -1,4 +1,0 @@
-(executable
- (public_name AOC24)
- (name main)
- (libraries AOC24))

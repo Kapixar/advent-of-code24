@@ -1,0 +1,22 @@
+(lang dune 3.17)
+
+(name Aoc24)
+
+(generate_opam_files true)
+
+(source
+ (github kapixar/advent-of-code24))
+
+(authors "Kapixar")
+
+(license LICENSE)
+
+(documentation https://url/to/documentation)
+
+(package
+ (name Aoc24)
+ (synopsis "AOC24 Solutions")
+ (description "Advent Of Code 2024 Solutions in OCaml")
+ (depends ocaml)
+ (tags
+  ("add topics" "to describe" your project)))
